@@ -1,0 +1,25 @@
+var price = 1250.50
+var quantity = 25
+var tax_rate = 0.08
+
+var subtotal = price * quantity
+var tax = subtotal * tax_rate
+var total = subtotal + tax
+
+print "🧾 --- Invoice Summary ---"
+print "🔹 Price per unit: $"
+print price
+print "🔹 Quantity: "
+print quantity
+print "🔹 Subtotal: $" + print subtotal
+print "🔹 Tax (8%): $"
+print tax
+print "💰 Total cost: $"
+print total
+
+var product = "Aluminum"
+var origin = "Canada"
+var description = product + " from " + origin
+
+print "📦 Product Info:"
+print description

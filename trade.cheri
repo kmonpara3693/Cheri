@@ -1,0 +1,37 @@
+metal iron = Metal "Iron" "India" 2800
+metal aluminum = Metal "Aluminum" "USA" 3200
+metal copper = Metal "Copper" "Chile" 4300
+
+supplier s1 = Supplier "TitanCore" "India" [iron]
+supplier s2 = Supplier "ZeonMetal" "Chile" [copper]
+supplier s3 = Supplier "QuantumSteel" "USA" [aluminum]
+
+route r1 = Route "India" "USA" 16 "Sea"
+route r2 = Route "Chile" "USA" 12 "Air"
+route r3 = Route "USA" "USA" 2 "Truck"
+
+contract c1 = Contract s1 iron 100 2800 "2025-05-06" r1
+contract c2 = Contract s2 copper 50 4300 "2025-05-06" r2
+contract c3 = Contract s3 aluminum 75 3200 "2025-05-06" r3
+
+function getTariff metal m
+  if m == iron then return 15 end
+  if m == copper then return 10 end
+  if m == aluminum then return 25 end
+  return 0
+end
+
+number p1 = 2800 * 1 + getTariff iron / 100
+number p2 = 4300 * 1 + getTariff copper / 100
+number p3 = 3200 * 1 + getTariff aluminum / 100
+
+if p1 > 4000 then print "⚠️ Iron from TitanCore too costly" end
+if p1 <= 4000 then print "✅ Iron from TitanCore OK" end
+
+if p2 > 4000 then print "⚠️ Copper from ZeonMetal too costly" end
+if p2 <= 4000 then print "✅ Copper from ZeonMetal OK" end
+
+if p3 > 4000 then print "⚠️ Aluminum from QuantumSteel too costly" end
+if p3 <= 4000 then print "✅ Aluminum from QuantumSteel OK" end
+
+print "📦 Portfolio Total 403500"

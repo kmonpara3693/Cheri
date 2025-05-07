@@ -1,0 +1,28 @@
+var i = 1
+var count3 = 0
+var count5 = 0
+
+while i <= 20
+  count3 = count3 + 1
+  count5 = count5 + 1
+
+  if count3 == 3 and count5 == 5 then
+    print "FizzBuzz"
+    count3 = 0
+    count5 = 0
+  else
+    if count3 == 3 then
+      print "Fizz"
+      count3 = 0
+    else
+      if count5 == 5 then
+        print "Buzz"
+        count5 = 0
+      else
+        print i
+      end
+    end
+  end
+
+  i = i + 1
+end
