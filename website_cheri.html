@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheri Language - Business Operations Programming</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --light: #f1f2f6;
+            --dark: #2c2c2c;
+            --accent: #ff6b81;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1a1a2e 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+        }
+
+        .features {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .examples {
+            background-color: var(--secondary);
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .examples h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .example-code {
+            background-color: #1e1e2e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .example-code pre {
+            margin: 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            color: #f8f8f2;
+        }
+
+        .comment { color: #6272a4; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .number { color: #bd93f9; }
+        .function { color: #50fa7b; }
+        .operator { color: #ff79c6; }
+
+        .tryit {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .tryit h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .interpreter {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .interpreter textarea {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            height: 200px;
+            width: 100%;
+            resize: vertical;
+        }
+
+        .interpreter .output {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f1f2f6;
+            min-height: 100px;
+            text-align: left;
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social {
+            margin-top: 1rem;
+        }
+
+        .social a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="/api/placeholder/40/40" alt="Cheri Logo">
+                <div>Cheri<span>🍒</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#try">Try It</a></li>
+                    <li><a href="#docs">Docs</a></li>
+                    <li><a href="https://github.com/cherionto/cheri-lang" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Cheri<span style="color: var(--primary);">🍒</span> Language</h1>
+            <p>The business operations programming language designed for trade flows, supply chains, and market analysis. Engineered to manipulate markets, not machines.</p>
+            <a href="#try" class="btn">Try Cheri Now</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💹</div>
+                    <h3>Business Native</h3>
+                    <p>Built-in business verbs like import(), acquire(), evaluate_risk(), and invest() that map directly to real-world operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Supply Chain Modeling</h3>
+                    <p>Model complex supply chains, optimize routes, and simulate trade flows with domain-specific abstractions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Portfolio Simulation</h3>
+                    <p>Run full startup and trade plans with market-aware simulation before investing real capital.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚢</div>
+                    <h3>Global Trade Logic</h3>
+                    <p>Context-aware logic that adjusts for tariffs, regional differences, and currency fluctuations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Zero Boilerplate</h3>
+                    <p>Focus on strategy, not setup. Write clean, expressive code without complex configurations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Real-time Updates</h3>
+                    <p>Connect to live data feeds for metals, commodities, and logistics rates with policy triggers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="examples" id="examples">
+        <div class="container">
+            <h2>Code Examples</h2>
+            <div class="example-code">
+                <pre><span class="comment">// Market dip detection and auto-purchase</span>
+<span class="keyword">metal</span> = <span class="string">'aluminum'</span>
+<span class="keyword">price</span> = <span class="number">2100</span>  <span class="comment">// per ton</span>
+
+<span class="keyword">if</span> price < <span class="number">2200</span>:
+    <span class="function">print</span>(<span class="string">"Market opportunity detected"</span>)
+    <span class="function">import</span>(metal, qty=<span class="string">'50T'</span>)
+    <span class="function">sell</span>(<span class="string">'EU'</span>, markup=<span class="number">18</span>%)</pre>
+            </div>
+
+            <div class="example-code">
+                <pre><span class="comment">// Supply chain optimization</span>
+<span class="function">function</span> optimize_supply(metal, region):
+    route = <span class="function">best_route</span>(metal, region)
+    <span class="function">reroute_supply</span>(metal, via=route)
+
+    <span class="keyword">if</span> <span class="function">tariff_rate</span>(region) > <span class="number">10</span>:
+        alt_region = <span class="function">find_alternative</span>(region, max_tariff=<span class="number">5</span>)
+        <span class="function">print</span>(<span class="string">"High tariff detected. Alternative route: "</span> + alt_region)
+        <span class="keyword">return</span> {
+            <span class="string">'primary'</span>: route,
+            <span class="string">'alternative'</span>: <span class="function">best_route</span>(metal, alt_region)
+        }
+    <span class="keyword">return</span> { <span class="string">'primary'</span>: route }</pre>
+            </div>
+
+            <div class="example-code">
+                <pre><span class="comment">// Portfolio analysis and ROI projection</span>
+portfolio = <span class="function">create_portfolio</span>(<span class="string">"Global Metals Q2"</span>)
+portfolio.<span class="function">add</span>(<span class="string">'aluminum'</span>, qty=<span class="string">'50T'</span>, price=<span class="number">2100</span>)
+portfolio.<span class="function">add</span>(<span class="string">'copper'</span>, qty=<span class="string">'20T'</span>, price=<span class="number">8500</span>)
+
+simulation = portfolio.<span class="function">simulate</span>(timeframe=<span class="string">'12M'</span>)
+<span class="function">print</span>(<span class="string">"Expected ROI: "</span> + simulation.roi + <span class="string">"%"</span>)
+<span class="function">print</span>(<span class="string">"Risk assessment: "</span> + simulation.risk + <span class="string">"/10"</span>)</pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="tryit" id="try">
+        <div class="container">
+            <h2>Try Cheri Online</h2>
+            <p>Write and execute Cheri code right in your browser.</p>
+
+            <div class="interpreter">
+                <textarea id="code-editor">// hello_world.cheri - A simple introduction to Cheri language
+metal = 'aluminum'
+price = 2100  // USD per ton
+
+// Simple conditional logic for trade decision
+if price < 2200:
+    print("Market opportunity detected for " + metal)
+    import(metal, qty='50T')
+    sell('EU', markup=18%)
+else:
+    print("Current market price too high for " + metal + " at $" + price)
+</textarea>
+                <button class="btn" id="run-btn">Run Code</button>
+                <div class="output" id="output">
+                    // Output will appear here
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Cheri Language - Where your wealth thrives</p>
+            <p>Copyright &copy; 2025 Cherionto</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('run-btn').addEventListener('click', function() {
+            const code = document.getElementById('code-editor').value;
+            const output = document.getElementById('output');
+
+            // Simulate code execution - in a real implementation, this would call the Cheri interpreter
+            output.innerHTML = '// Cheri Interpreter Output\n';
+
+            // Mock execution result based on code content
+            if (code.includes('price < 2200')) {
+                output.innerHTML += 'CHERI OUTPUT: Market opportunity detected for aluminum\n';
+                output.innerHTML += '> Importing 50T of aluminum\n';
+                output.innerHTML += '> Selling to EU with 18% markup\n';
+            }
+
+            if (code.includes('create_portfolio')) {
+                output.innerHTML += 'CHERI OUTPUT: Portfolio created: Global Metals Q2\n';
+                output.innerHTML += 'CHERI OUTPUT: Expected ROI: 18.7%\n';
+                output.innerHTML += 'CHERI OUTPUT: Risk assessment: 4.2/10\n';
+            }
+
+            if (code.includes('optimize_supply')) {
+                output.innerHTML += 'CHERI OUTPUT: Optimizing supply routes\n';
+                output.innerHTML += '> Route calculated: Pacific-Direct\n';
+                output.innerHTML += '> Rerouting supply via Pacific-Direct\n';
+            }
+
+            if (output.innerHTML === '// Cheri Interpreter Output\n') {
+                output.innerHTML += 'ERROR: Invalid or incomplete Cheri code\n';
+            }
+        });
+    </script>
+</body>
+</html>
